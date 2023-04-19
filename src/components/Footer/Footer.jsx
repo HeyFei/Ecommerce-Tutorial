@@ -1,170 +1,95 @@
 import React from "react"
 
-import iframe1 from "../../assets/images/home/iframe1.png";
-import iframe2 from "../../assets/images/home/iframe2.png";
-import iframe3 from "../../assets/images/home/iframe3.png";
-import iframe4 from "../../assets/images/home/iframe4.png";
-import map from "../../assets/images/home/map.png";
-
 const Footer = () => {
     return (
-<footer id="footer">
-    <div className="footer-top">
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-2">
-            <div className="companyinfo">
-              <h2><span>e</span>-shopper</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-            </div>
-          </div>
-          <div className="col-sm-7">
-            <div className="col-sm-3">
-              <div className="video-gallery text-center">
-                <a href="#">
-                  <div className="iframe-img">
-                    <img src={iframe1} alt="" />
-                  </div>
-                  <div className="overlay-icon">
-                    <i className="fa fa-play-circle-o"></i>
-                  </div>
-                </a>
-                <p>Circle of Hands</p>
-                <h2>24 DEC 2014</h2>
-              </div>
-            </div>
-            
-            <div className="col-sm-3">
-              <div className="video-gallery text-center">
-                <a href="#">
-                  <div className="iframe-img">
-                    <img src={iframe2} alt="" />
-                  </div>
-                  <div className="overlay-icon">
-                    <i className="fa fa-play-circle-o"></i>
-                  </div>
-                </a>
-                <p>Circle of Hands</p>
-                <h2>24 DEC 2014</h2>
-              </div>
-            </div>
-            
-            <div className="col-sm-3">
-              <div className="video-gallery text-center">
-                <a href="#">
-                  <div className="iframe-img">
-                    <img src={iframe3} alt="" />
-                  </div>
-                  <div className="overlay-icon">
-                    <i className="fa fa-play-circle-o"></i>
-                  </div>
-                </a>
-                <p>Circle of Hands</p>
-                <h2>24 DEC 2014</h2>
-              </div>
-            </div>
-            
-            <div className="col-sm-3">
-              <div className="video-gallery text-center">
-                <a href="#">
-                  <div className="iframe-img">
-                    <img src={iframe4} alt="" />
-                  </div>
-                  <div className="overlay-icon">
-                    <i className="fa fa-play-circle-o"></i>
-                  </div>
-                </a>
-                <p>Circle of Hands</p>
-                <h2>24 DEC 2014</h2>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-3">
-            <div className="address">
-              <img src={map} alt="" />
-              <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div className="footer-widget">
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-2">
-            <div className="single-widget">
-              <h2>Service</h2>
-              <ul className="nav nav-pills nav-stacked">
-                <li><a href="#">Online Help</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Order Status</a></li>
-                <li><a href="#">Change Location</a></li>
-                <li><a href="#">FAQ’s</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-sm-2">
-            <div className="single-widget">
-              <h2>Quock Shop</h2>
-              <ul className="nav nav-pills nav-stacked">
-                <li><a href="#">T-Shirt</a></li>
-                <li><a href="#">Mens</a></li>
-                <li><a href="#">Womens</a></li>
-                <li><a href="#">Gift Cards</a></li>
-                <li><a href="#">Shoes</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-sm-2">
-            <div className="single-widget">
-              <h2>Policies</h2>
-              <ul className="nav nav-pills nav-stacked">
-                <li><a href="#">Terms of Use</a></li>
-                <li><a href="#">Privecy Policy</a></li>
-                <li><a href="#">Refund Policy</a></li>
-                <li><a href="#">Billing System</a></li>
-                <li><a href="#">Ticket System</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-sm-2">
-            <div className="single-widget">
-              <h2>About Shopper</h2>
-              <ul className="nav nav-pills nav-stacked">
-                <li><a href="#">Company Information</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="#">Store Location</a></li>
-                <li><a href="#">Affillate Program</a></li>
-                <li><a href="#">Copyright</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-sm-3 col-sm-offset-1">
-            <div className="single-widget">
-              <h2>About Shopper</h2>
-              <form action="#" className="searchform">
-                <input type="text" placeholder="Your email address" />
-                <button type="submit" className="btn btn-default"><i className="fa fa-arrow-circle-o-right"></i></button>
-                <p>Get the most recent updates from <br />our site and be updated your self...</p>
-              </form>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </div>
-    
-
-    <div className="footer-bottom">
-			<div className="container">
+      <footer>
+        <div className="footer-main">
+            <div className="container">
 				<div className="row">
-					Shared by <i className="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a><p></p>
+					<div className="col-lg-4 col-md-12 col-sm-12">
+						<div className="footer-top-box">
+							<h3>Business Time</h3>
+							<ul className="list-time">
+								<li>Monday - Friday: 08.00am to 05.00pm</li> <li>Saturday: 10.00am to 08.00pm</li> <li>Sunday: <span>Closed</span></li>
+							</ul>
+						</div>
+					</div>
+					<div className="col-lg-4 col-md-12 col-sm-12">
+						<div className="footer-top-box">
+							<h3>Newsletter</h3>
+							<form className="newsletter-box">
+								<div className="form-group">
+									<input className="" type="email" name="Email" placeholder="Email Address*" />
+									<i className="fa fa-envelope"></i>
+								</div>
+								<button className="btn hvr-hover" type="submit">Submit</button>
+							</form>
+						</div>
+					</div>
+					<div className="col-lg-4 col-md-12 col-sm-12">
+						<div className="footer-top-box">
+							<h3>Social Media</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+							<ul>
+                                <li><a href="#"><i className="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i className="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i className="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i className="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i className="fa fa-rss" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i className="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i className="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                            </ul>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
+				<hr />
+                <div className="row">
+                    <div className="col-lg-4 col-md-12 col-sm-12">
+                        <div className="footer-widget">
+                            <h4>About Freshshop</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> 
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 							
+                        </div>
+                    </div>
+                    <div className="col-lg-4 col-md-12 col-sm-12">
+                        <div className="footer-link">
+                            <h4>Information</h4>
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Customer Service</a></li>
+                                <li><a href="#">Our Sitemap</a></li>
+                                <li><a href="#">Terms &amp; Conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Delivery Information</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="col-lg-4 col-md-12 col-sm-12">
+                      <div className="footer-link-contact">
+                        <h4>Contact Us</h4>
+                        <ul>
+                          <li>
+                              <p><i className="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br/>Preston Street Wichita,<br/> KS 67213 </p>
+                          </li>
+                          <li>
+                              <p><i className="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                          </li>
+                          <li>
+                              <p><i className="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  </footer>
+        <div className="footer-copyright">
+            <p className="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
+            <a href="https://html.design/">html design</a></p>
+        </div>
+        <a href="#" id="back-to-top" title="Back to top" style={{display:"none"}}>&uarr;</a>
+    </footer>
     );
 }
 

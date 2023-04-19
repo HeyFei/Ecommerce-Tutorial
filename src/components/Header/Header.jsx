@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { Container } from "reactstrap";
 import { NavLink, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import logo from "../../assets/images/home/logo.png";
+import logo from "../../assets/images/logo.png";
+import proImg01  from "../../assets/images/img-pro-01.jpg";
+import proImg02  from "../../assets/images/img-pro-02.jpg";
+import proImg03  from "../../assets/images/img-pro-03.jpg";
 
 const nav__links = [
   {
@@ -15,122 +18,96 @@ const nav__links = [
     path: "/shop",
   },
   {
-    display: "Cart",
-    path: "/cart",
+    display: "About US",
+    path: "/about",
   },
   {
-    display: "Contact",
+    display: "Gallery",
+    path: "/gallery",
+  },
+  {
+    display: "Contact US",
     path: "/contact",
   },
 ];
 
 const Header = () => {
   return (
-    <header id="header">
-      <div className="header_top">
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-6">
-              <div className="contactinfo">
-                <ul className="nav nav-pills">
-                  <li><a href="#"><i className="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                  <li><a href="#"><i className="fa fa-envelope"></i> info@domain.com</a></li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-sm-6">
-              <div className="social-icons pull-right">
-                <ul className="nav navbar-nav">
-                  <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-                  <li><a href="#"><i className="fa fa-dribbble"></i></a></li>
-                  <li><a href="#"><i className="fa fa-google-plus"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <div className="header-middle">
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-4">
-              <div className="logo pull-left">
-                <a href="index.html"><img src={logo} alt={logo} /></a>
-              </div>
-              <div className="btn-group pull-right">
-                <div className="btn-group">
-                  <button type="button" className="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                    USA
-                    <span className="caret"></span>
-                  </button>
-                  <ul className="dropdown-menu">
-                    <li><a href="#">Canada</a></li>
-                    <li><a href="#">UK</a></li>
-                  </ul>
-                </div>
-                
-                <div className="btn-group">
-                  <button type="button" className="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                    DOLLAR
-                    <span className="caret"></span>
-                  </button>
-                  <ul className="dropdown-menu">
-                    <li><a href="#">Canadian Dollar</a></li>
-                    <li><a href="#">Pound</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-8">
-              <div className="shop-menu pull-right">
-                <ul className="nav navbar-nav">
-                  <li><a href="#"><i className="fa fa-user"></i> Account</a></li>
-                  <li><a href="#"><i className="fa fa-star"></i> Wishlist</a></li>
-                  <li><a href="checkout.html"><i className="fa fa-crosshairs"></i> Checkout</a></li>
-                  <li><a href="cart.html"><i className="fa fa-shopping-cart"></i> Cart</a></li>
-                  <li><a href="login.html"><i className="fa fa-lock"></i> Login</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="header-bottom">
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-9">
-              <div className="navbar-header">
-                <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                  <span className="sr-only">Toggle navigation</span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
+      <header className="main-header">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div className="container">
+                <div className="navbar-header">
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i className="fa fa-bars"></i>
                 </button>
-              </div>
-              <div className="mainmenu pull-left">
-                <ul className="nav navbar-nav collapse navbar-collapse">
-                  {nav__links.map((item, index) => (
-                    <li key={index}>
-                      <NavLink to={item.path} >
-                          {item.display}
-                      </NavLink>
+                    <a className="navbar-brand" href="index.html"><img src={logo} className="logo" alt="" /></a>
+                </div>
+
+                <div className="collapse navbar-collapse" id="navbar-menu">
+                    <ul className="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        {/* <li className="nav-item active"><a className="nav-link" href="index.html">Home</a></li>
+                        <li className="nav-item"><a className="nav-link" href="about.html">About Us</a></li>
+                        <li className="dropdown">
+                            <a href="#" className="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                            <ul className="dropdown-menu">
+                                <li><a href="shop.html">Sidebar Shop</a></li>
+                                <li><a href="shop-detail.html">Shop Detail</a></li>
+                                <li><a href="cart.html">Cart</a></li>
+                                <li><a href="checkout.html">Checkout</a></li>
+                                <li><a href="my-account.html">My Account</a></li>
+                                <li><a href="wishlist.html">Wishlist</a></li>
+                            </ul>
+                        </li>
+                        <li className="nav-item"><a className="nav-link" href="gallery.html">Gallery</a></li>
+                        <li className="nav-item"><a className="nav-link" href="contact-us.html">Contact Us</a></li> */}
+                        {nav__links.map((item, index) => (
+                          <li className="nav-item" key={index}>
+                            <NavLink className="nav-link" to={item.path}>{item.display}</NavLink>
+                          </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="attr-nav">
+                    <ul>
+                      <li className="search"><a href="#"><i className="fa fa-search"></i></a></li>
+                      <li className="side-menu">
+                      <a href="#">
+                        <i className="fa fa-shopping-bag"></i>
+                        <span className="badge">3</span>
+                        <p>&nbsp;My Cart</p>
+                      </a>
                     </li>
-                  ))}
-                </ul>
-              </div>
+                  </ul>
+                </div>
             </div>
-            <div className="col-sm-3">
-              <div className="search_box pull-right">
-                <input type="text" placeholder="Search"/>
-              </div>
+            <div className="side">
+                <a href="#" className="close-side"><i className="fa fa-times"></i></a>
+                <li className="cart-box">
+                    <ul className="cart-list">
+                        <li>
+                            <a href="#" className="photo"><img src={proImg01} className="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Delica omtantur </a></h6>
+                            <p>1x - <span className="price">$80.00</span></p>
+                        </li>
+                        <li>
+                            <a href="#" className="photo"><img src={proImg02} className="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Omnes ocurreret</a></h6>
+                            <p>1x - <span className="price">$60.00</span></p>
+                        </li>
+                        <li>
+                            <a href="#" className="photo"><img src={proImg03} className="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Agam facilisis</a></h6>
+                            <p>1x - <span className="price">$40.00</span></p>
+                        </li>
+                        <li className="total">
+                            <a href="#" className="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                            <span className="float-right"><strong>Total</strong>: $180.00</span>
+                        </li>
+                    </ul>
+                </li>
             </div>
-          </div>
-        </div>
-      </div>
+        </nav>
     </header>
   );
 };
