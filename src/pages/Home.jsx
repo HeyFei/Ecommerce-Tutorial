@@ -12,25 +12,18 @@ import categoryImg03 from "../assets/images/categories_img_03.jpg";
 import addImg01 from "../assets/images/add-img-01.jpg";
 import addImg02 from "../assets/images/add-img-02.jpg";
 
-import blogImg01  from "../assets/images/blog-img-01.jpg";
-import blogImg02  from "../assets/images/blog-img-02.jpg";
-import blogImg03  from "../assets/images/blog-img-03.jpg";
+import blogImg01 from "../assets/images/blog-img-01.jpg";
+import blogImg02 from "../assets/images/blog-img-02.jpg";
+import blogImg03 from "../assets/images/blog-img-03.jpg";
 
-import insImg01  from "../assets/images/instagram-img-01.jpg";
-import insImg02  from "../assets/images/instagram-img-02.jpg";
-import insImg03  from "../assets/images/instagram-img-03.jpg";
-import insImg04  from "../assets/images/instagram-img-04.jpg";
-import insImg05  from "../assets/images/instagram-img-05.jpg";
-import insImg06  from "../assets/images/instagram-img-06.jpg";
-import insImg07  from "../assets/images/instagram-img-07.jpg";
-import insImg08  from "../assets/images/instagram-img-08.jpg";
-import insImg09  from "../assets/images/instagram-img-09.jpg";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../redux/cart/cartSlice";
 
 const slideImgData = [
     {
-      title: "Quick Delivery",
-      imgUrl: slideImg01,
-      desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus, doloremque.",
+        title: "Quick Delivery",
+        imgUrl: slideImg01,
+        desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus, doloremque.",
     }
     // {
     //   title: "Super Dine In",
@@ -42,11 +35,24 @@ const slideImgData = [
     //   imgUrl: slideImg03,
     //   desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus, doloremque.",
     // },
-  ];
+];
 
 const Home = () => {
+    const dispatch = useDispatch();
     const [category, setCategory] = useState("All");
     const [allProducts, setAllProducts] = useState(products);
+
+    const addToCart = (item) => {
+        const { id, title, image01, current_price } = item;
+        dispatch(
+            cartActions.addItem({
+                id,
+                title,
+                image01,
+                current_price,
+            })
+        )
+    }
 
     useEffect(() => {
         if (category == "All") {
@@ -64,7 +70,7 @@ const Home = () => {
             );
             setAllProducts(filterProducts);
         }
-    },[category]);
+    }, [category]);
 
     return (
         <section>
@@ -72,7 +78,7 @@ const Home = () => {
                 <div className="container">
                     <div className="input-group">
                         <span className="input-group-addon"><i className="fa fa-search"></i></span>
-                        <input type="text" className="form-control" placeholder="Search"/>
+                        <input type="text" className="form-control" placeholder="Search" />
                         <span className="input-group-addon close-search"><i className="fa fa-times"></i></span>
                     </div>
                 </div>
@@ -101,7 +107,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            
+
             <div className="box-add-products">
                 <div className="container">
                     <div className="row">
@@ -119,7 +125,7 @@ const Home = () => {
                 </div>
             </div>
 
-            
+
             <div className="products-box">
                 <div className="container">
                     <div className="row">
@@ -134,15 +140,15 @@ const Home = () => {
                         <div className="col-lg-12">
                             <div className="special-menu text-center">
                                 <div className="button-group filter-button-group">
-                                    <button 
+                                    <button
                                         className={category === 'All' ? 'active' : ''}
-                                    onClick={() => setCategory("All")}>All</button>&nbsp;
-                                    <button 
+                                        onClick={() => setCategory("All")}>All</button>&nbsp;
+                                    <button
                                         className={category === 'Top featured' ? 'active' : ''}
-                                    onClick={() => setCategory("Top featured")}>Top featured</button>&nbsp;
+                                        onClick={() => setCategory("Top featured")}>Top featured</button>&nbsp;
                                     <button
                                         className={category === 'Best seller' ? 'active' : ''}
-                                    onClick={() => setCategory("Best seller")}>Best seller</button>
+                                        onClick={() => setCategory("Best seller")}>Best seller</button>
                                 </div>
                             </div>
                         </div>
@@ -161,9 +167,13 @@ const Home = () => {
                                             <ul>
                                                 <li><Link to={`/product/${item.id}`}><i className="fas fa-eye"></i></Link></li>
                                                 <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i className="fas fa-sync-alt"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i className="far fa-heart"></i></a></li>
+                                                <li>
+                                                    <button className="btn hvr-hover" style={{ color: "#FFFFFF", padding: "5px 10px", fontStyle: "normal", fontVariant: "normal", textRendering: "auto", lineHeight: "1px", border: "0px", display: "block" }}>
+                                                        <i className="far fa-heart"></i>
+                                                    </button>
+                                                </li>
                                             </ul>
-                                            <a className="cart" href="#">Add to Cart</a>
+                                            <button onClick={() => addToCart(item)} className="btn hvr-hover" style={{ position: "absolute", bottom: "0px", left: "0px", padding: "10px 20px", color: "#FFFFFF", fontWeight: 700, border: "0px" }}>Add to Cart</button>
                                         </div>
                                     </div>
                                     <div className="why-text">
@@ -199,9 +209,9 @@ const Home = () => {
                                         <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
                                     </div>
                                     <ul className="option-blog">
-                                        <li><a href="#"><i className="far fa-heart"></i></a></li>
-                                        <li><a href="#"><i className="fas fa-eye"></i></a></li>
-                                        <li><a href="#"><i className="far fa-comments"></i></a></li>
+                                        <button style={{ cursor: "pointer", background: "#000000", display: "inline-block", fontSize: "18px", color: "#FFFFFF", width: "34px", height: "34px", textAlign: "center", lineHeight: "1px", border: "0px" }}><i className="far fa-heart"></i></button>
+                                        <button style={{ cursor: "pointer", background: "#000000", display: "inline-block", fontSize: "18px", color: "#FFFFFF", width: "34px", height: "34px", textAlign: "center", lineHeight: "1px", border: "0px" }}><i className="fas fa-eye"></i></button>
+                                        <button style={{ cursor: "pointer", background: "#000000", display: "inline-block", fontSize: "18px", color: "#FFFFFF", width: "34px", height: "34px", textAlign: "center", lineHeight: "1px", border: "0px" }}><i className="far fa-comments"></i></button>
                                     </ul>
                                 </div>
                             </div>
@@ -217,9 +227,9 @@ const Home = () => {
                                         <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
                                     </div>
                                     <ul className="option-blog">
-                                        <li><a href="#"><i className="far fa-heart"></i></a></li>
-                                        <li><a href="#"><i className="fas fa-eye"></i></a></li>
-                                        <li><a href="#"><i className="far fa-comments"></i></a></li>
+                                        <button style={{ cursor: "pointer", background: "#000000", display: "inline-block", fontSize: "18px", color: "#FFFFFF", width: "34px", height: "34px", textAlign: "center", lineHeight: "1px", border: "0px" }}><i className="far fa-heart"></i></button>
+                                        <button style={{ cursor: "pointer", background: "#000000", display: "inline-block", fontSize: "18px", color: "#FFFFFF", width: "34px", height: "34px", textAlign: "center", lineHeight: "1px", border: "0px" }}><i className="fas fa-eye"></i></button>
+                                        <button style={{ cursor: "pointer", background: "#000000", display: "inline-block", fontSize: "18px", color: "#FFFFFF", width: "34px", height: "34px", textAlign: "center", lineHeight: "1px", border: "0px" }}><i className="far fa-comments"></i></button>
                                     </ul>
                                 </div>
                             </div>
@@ -235,9 +245,9 @@ const Home = () => {
                                         <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
                                     </div>
                                     <ul className="option-blog">
-                                        <li><a href="#"><i className="far fa-heart"></i></a></li>
-                                        <li><a href="#"><i className="fas fa-eye"></i></a></li>
-                                        <li><a href="#"><i className="far fa-comments"></i></a></li>
+                                        <button style={{ cursor: "pointer", background: "#000000", display: "inline-block", fontSize: "18px", color: "#FFFFFF", width: "34px", height: "34px", textAlign: "center", lineHeight: "1px", border: "0px" }}><i className="far fa-heart"></i></button>
+                                        <button style={{ cursor: "pointer", background: "#000000", display: "inline-block", fontSize: "18px", color: "#FFFFFF", width: "34px", height: "34px", textAlign: "center", lineHeight: "1px", border: "0px" }}><i className="fas fa-eye"></i></button>
+                                        <button style={{ cursor: "pointer", background: "#000000", display: "inline-block", fontSize: "18px", color: "#FFFFFF", width: "34px", height: "34px", textAlign: "center", lineHeight: "1px", border: "0px" }}><i className="far fa-comments"></i></button>
                                     </ul>
                                 </div>
                             </div>

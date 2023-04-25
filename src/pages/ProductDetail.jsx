@@ -1,17 +1,31 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
+import { cartActions } from "../redux/cart/cartSlice";
 import products from "../assets/fake-data/products";
 
-import bigImg01  from "../assets/images/big-img-01.jpg";
-import bigImg02  from "../assets/images/big-img-02.jpg";
-import bigImg03  from "../assets/images/big-img-03.jpg";
+import bigImg01 from "../assets/images/big-img-01.jpg";
+import bigImg02 from "../assets/images/big-img-02.jpg";
+import bigImg03 from "../assets/images/big-img-03.jpg";
 
 const ProductDetail = () => {
-    const {id} = useParams();
+    const dispatch = useDispatch();
+    const { id } = useParams();
     const [allProducts, setAllProducts] = useState(products);
     const product = products.find((product) => product.id === id);
     const [previewImg, setPreviewImg] = useState(product.image01);
-    const {title, original_price, current_price, desc, category, image01} = product;
+    const { title, original_price, current_price, desc, category, image01 } = product;
+
+    const addToCart = () => {
+        dispatch(
+            cartActions.addItem({
+                id,
+                title,
+                image01,
+                current_price,
+            })
+        );
+    };
 
     return (
         <section>
@@ -27,24 +41,24 @@ const ProductDetail = () => {
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
             <div className="shop-detail-box-main">
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-5 col-lg-5 col-md-6">
                             <div id="carousel-example-1" className="single-product-slider carousel slide" data-ride="carousel">
                                 <div className="carousel-inner" role="listbox">
-                                    <div className="carousel-item active"> <img className="d-block w-100" src={bigImg01} alt="First slide"/> </div>
-                                    <div className="carousel-item"> <img className="d-block w-100" src={bigImg02} alt="Second slide"/> </div>
-                                    <div className="carousel-item"> <img className="d-block w-100" src={bigImg03} alt="Third slide"/> </div>
+                                    <div className="carousel-item active"> <img className="d-block w-100" src={bigImg01} alt="First slide" /> </div>
+                                    <div className="carousel-item"> <img className="d-block w-100" src={bigImg02} alt="Second slide" /> </div>
+                                    <div className="carousel-item"> <img className="d-block w-100" src={bigImg03} alt="Third slide" /> </div>
                                 </div>
-                                <a className="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev"> 
+                                <a className="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev">
                                     <i className="fa fa-angle-left" aria-hidden="true"></i>
-                                    <span className="sr-only">Previous</span> 
+                                    <span className="sr-only">Previous</span>
                                 </a>
-                                <a className="carousel-control-next" href="#carousel-example-1" role="button" data-slide="next"> 
-                                    <i className="fa fa-angle-right" aria-hidden="true"></i> 
-                                    <span className="sr-only">Next</span> 
+                                <a className="carousel-control-next" href="#carousel-example-1" role="button" data-slide="next">
+                                    <i className="fa fa-angle-right" aria-hidden="true"></i>
+                                    <span className="sr-only">Next</span>
                                 </a>
                                 <ol className="carousel-indicators">
                                     <li data-target="#carousel-example-1" data-slide-to="0" className="active">
@@ -77,22 +91,22 @@ const ProductDetail = () => {
 
                                 <div className="price-box-bar">
                                     <div className="cart-and-bay-btn">
-                                        <a className="btn hvr-hover" data-fancybox-close="" href="#">Buy New</a>&nbsp;
-                                        <a className="btn hvr-hover" data-fancybox-close="" href="#">Add to cart</a>
+                                        <button className="btn hvr-hover" style={{ color: "#FFFFFF", fontWeight: 700, padding: "10px 20px", border: "none" }}>Buy New</button>&nbsp;
+                                        <button onClick={() => addToCart()} className="btn hvr-hover" style={{ color: "#FFFFFF", fontWeight: 700, padding: "10px 20px", border: "none" }}>Add to Cart</button>
                                     </div>
                                 </div>
 
                                 <div className="add-to-btn">
                                     <div className="add-comp">
-                                        <a className="btn hvr-hover" href="#"><i className="fas fa-heart"></i> Add to wishlist</a>&nbsp;
-                                        <a className="btn hvr-hover" href="#"><i className="fas fa-sync-alt"></i> Add to Compare</a>
+                                        <button className="btn hvr-hover" style={{ color: "#FFFFFF", fontWeight: 700, padding: "10px 20px", marginBottom: "30px", border: "none" }}><i className="fas fa-heart"></i> Add to wishlist</button>&nbsp;
+                                        <button className="btn hvr-hover" style={{ color: "#FFFFFF", fontWeight: 700, padding: "10px 20px", marginBottom: "30px", border: "none" }}><i className="fas fa-sync-alt"></i> Add to Compare</button>
                                     </div>
                                     <div className="share-bar">
-                                        <a className="btn hvr-hover" href="#"><i className="fab fa-facebook" aria-hidden="true"></i></a>&nbsp;
-                                        <a className="btn hvr-hover" href="#"><i className="fab fa-google-plus" aria-hidden="true"></i></a>&nbsp;
-                                        <a className="btn hvr-hover" href="#"><i className="fab fa-twitter" aria-hidden="true"></i></a>&nbsp;
-                                        <a className="btn hvr-hover" href="#"><i className="fab fa-pinterest-p" aria-hidden="true"></i></a>&nbsp;
-                                        <a className="btn hvr-hover" href="#"><i className="fab fa-whatsapp" aria-hidden="true"></i></a>
+                                        <button className="btn hvr-hover" style={{ color: "#FFFFFF", padding: "5px 10px", display: "inline-block", width: "34px" }}><i className="fab fa-facebook" aria-hidden="true"></i></button>&nbsp;
+                                        <button className="btn hvr-hover" style={{ color: "#FFFFFF", padding: "5px 10px", display: "inline-block", width: "34px" }}><i className="fab fa-google-plus" aria-hidden="true"></i></button>&nbsp;
+                                        <button className="btn hvr-hover" style={{ color: "#FFFFFF", padding: "5px 10px", display: "inline-block", width: "34px" }}><i className="fab fa-twitter" aria-hidden="true"></i></button>&nbsp;
+                                        <button className="btn hvr-hover" style={{ color: "#FFFFFF", padding: "5px 10px", display: "inline-block", width: "34px" }}><i className="fab fa-pinterest-p" aria-hidden="true"></i></button>&nbsp;
+                                        <button className="btn hvr-hover" style={{ color: "#FFFFFF", padding: "5px 10px", display: "inline-block", width: "34px" }}><i className="fab fa-whatsapp" aria-hidden="true"></i></button>&nbsp;
                                     </div>
                                 </div>
                             </div>
@@ -105,8 +119,8 @@ const ProductDetail = () => {
                             </div>
                             <div className="card-body">
                                 <div className="media mb-3">
-                                    <div className="mr-2"> 
-                                        <img className="rounded-circle border p-1" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2264%22%20height%3D%2264%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_160c142c97c%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_160c142c97c%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2213.5546875%22%20y%3D%2236.5%22%3E64x64%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Generic placeholder image"/>
+                                    <div className="mr-2">
+                                        <img className="rounded-circle border p-1" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2264%22%20height%3D%2264%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_160c142c97c%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_160c142c97c%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2213.5546875%22%20y%3D%2236.5%22%3E64x64%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Generic placeholder image" />
                                     </div>
                                     <div className="media-body">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
@@ -115,8 +129,8 @@ const ProductDetail = () => {
                                 </div>
                                 <hr />
                                 <div className="media mb-3">
-                                    <div className="mr-2"> 
-                                        <img className="rounded-circle border p-1" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2264%22%20height%3D%2264%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_160c142c97c%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_160c142c97c%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2213.5546875%22%20y%3D%2236.5%22%3E64x64%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Generic placeholder image"/>
+                                    <div className="mr-2">
+                                        <img className="rounded-circle border p-1" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2264%22%20height%3D%2264%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_160c142c97c%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_160c142c97c%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2213.5546875%22%20y%3D%2236.5%22%3E64x64%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Generic placeholder image" />
                                     </div>
                                     <div className="media-body">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
@@ -125,8 +139,8 @@ const ProductDetail = () => {
                                 </div>
                                 <hr />
                                 <div className="media mb-3">
-                                    <div className="mr-2"> 
-                                        <img className="rounded-circle border p-1" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2264%22%20height%3D%2264%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_160c142c97c%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_160c142c97c%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2213.5546875%22%20y%3D%2236.5%22%3E64x64%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Generic placeholder image"/>
+                                    <div className="mr-2">
+                                        <img className="rounded-circle border p-1" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2264%22%20height%3D%2264%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_160c142c97c%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_160c142c97c%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2213.5546875%22%20y%3D%2236.5%22%3E64x64%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Generic placeholder image" />
                                     </div>
                                     <div className="media-body">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
@@ -134,43 +148,12 @@ const ProductDetail = () => {
                                     </div>
                                 </div>
                                 <hr />
-                                <a href="#" className="btn hvr-hover">Leave a Review</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row my-5">
-                        <div className="col-lg-12">
-                            <div className="title-all text-center">
-                                <h1>Featured Products</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
-                            </div>
-                            <div className="featured-products-box owl-carousel owl-theme">
-                                {allProducts.map((item) => (
-                                    <div className="item" key={item.id}>
-                                        <div className="products-single fix">
-                                            <div className="box-img-hover">
-                                                <img src={item.image01} className="img-fluid" alt="Image"/>
-                                                <div className="mask-icon">
-                                                    <ul>
-                                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i className="fas fa-eye"></i></a></li>
-                                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i className="fas fa-sync-alt"></i></a></li>
-                                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i className="far fa-heart"></i></a></li>
-                                                    </ul>
-                                                    <a className="cart" href="#">Add to Cart</a>
-                                                </div>
-                                            </div>
-                                            <div className="why-text">
-                                                <h4>{item.title}</h4>
-                                                <h5> ${item.current_price}</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
+                                <button className="btn hvr-hover" style={{ color: "#FFFFFF", fontWeight: 700, fontSize: 18, padding: "12px 25px", border: "none" }}>Leave a Review</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
         </section>
     );
 }
