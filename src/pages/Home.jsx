@@ -44,12 +44,13 @@ const Home = () => {
 
     const addToCart = (item) => {
         const { id, title, image01, current_price } = item;
+        let price = current_price;
         dispatch(
             cartActions.addItem({
                 id,
                 title,
                 image01,
-                current_price,
+                price,
             })
         )
     }

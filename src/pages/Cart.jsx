@@ -4,8 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "../redux/cart/cartSlice";
 
 const Cart = () => {
+
     const cartItems = useSelector((state) => state.cart.cartItems);
     const totalAmount = useSelector((state) => state.cart.totalAmount);
+
     return (
         <section>
             <div className="all-title-box">
@@ -94,7 +96,7 @@ const Cart = () => {
                                 <hr />
                                 <div className="d-flex gr-total">
                                     <h5>Grand Total</h5>
-                                    <div className="ml-auto h5"> $ 388 </div>
+                                    <div className="ml-auto h5"> $ {totalAmount} </div>
                                 </div>
                                 <hr />
                             </div>
@@ -111,6 +113,21 @@ const Cart = () => {
 const Tr = (props) => {
     const { id, image01, title, price, quantity } = props.item;
     const dispatch = useDispatch();
+
+    const incrementItem = () => {
+        dispatch(
+            cartActions.addItem({
+                id: id,
+                title: title,
+                image01: image01,
+                price: price,
+            })
+        );
+    };
+
+    const decreaseItem = () => {
+        dispatch(cartActions.removeItem(id));
+    }
 
     const deleteItem = () => {
         dispatch(cartActions.deleteItem(id));
@@ -130,14 +147,18 @@ const Tr = (props) => {
             <td className="price-pr">
                 <p>$ {price}</p>
             </td>
-            <td className="quantity-box"><input type="number" value={quantity} size="4" min="0" step="1" className="c-input-text qty text" /></td>
+            <td className="quantity-box">
+                <span onClick={() => decreaseItem()} style={{ cursor: "pointer" }}>&nbsp;-&nbsp;</span>
+                <input type="text" value={quantity || 0} readOnly size="4" min="0" step="1" className="c-input-text qty text" />
+                <span onClick={() => incrementItem()} style={{ cursor: "pointer" }}>&nbsp;+&nbsp;</span>
+            </td>
             <td className="total-pr">
                 <p>$ {Number(quantity) * Number(price)}</p>
             </td>
             <td className="remove-pr">
-                <a href="#">
+                <button onClick={() => deleteItem()} style={{ backgroundColor: "transparent", border: "none", cursor: "pointer" }}>
                     <i className="fas fa-times"></i>
-                </a>
+                </button>
             </td>
         </tr>
     );
