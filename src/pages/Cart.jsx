@@ -135,21 +135,21 @@ const Tr = (props) => {
     return (
         <tr>
             <td className="thumbnail-img">
-                <a href="#">
+                <Link to={`/product/${id}`}>
                     <img className="img-fluid" src={image01} alt="" />
-                </a>
+                </Link>
             </td>
             <td className="name-pr">
-                <a href="#">
+                <Link to={`/product/${id}`}>
                     {title}
-                </a>
+                </Link>
             </td>
             <td className="price-pr">
                 <p>$ {price}</p>
             </td>
             <td className="quantity-box">
                 <span onClick={() => decreaseItem()} style={{ cursor: "pointer" }}>&nbsp;-&nbsp;</span>
-                <input type="text" value={quantity || 0} readOnly size="4" min="0" step="1" className="c-input-text qty text" />
+                <input style={{ width: "50%" }} type="text" value={quantity || 0} readOnly size="4" min="0" step="1" className="c-input-text qty text" />
                 <span onClick={() => incrementItem()} style={{ cursor: "pointer" }}>&nbsp;+&nbsp;</span>
             </td>
             <td className="total-pr">

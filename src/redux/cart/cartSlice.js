@@ -11,8 +11,8 @@ const totalAmount =
         : 0;
 
 const totalQuantity =
-    localStorage.getItem("totalQuantity") != null
-        ? JSON.parse(localStorage.getItem("totalQuantity")) !== null
+    localStorage.getItem("totalQuantity") !== null
+        ? JSON.parse(localStorage.getItem("totalQuantity"))
         : 0;
 
 const setItemFunc = (item, totalAmount, totalQuantity) => {

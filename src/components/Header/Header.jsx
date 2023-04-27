@@ -34,7 +34,7 @@ const nav__links = [
 const Header = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
-
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   return (
     <header className="main-header">
       <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
@@ -77,7 +77,7 @@ const Header = () => {
               <li className="side-menu">
                 <a href="./cart">
                   <i className="fa fa-shopping-bag"></i>
-                  <span className="badge">3</span>
+                  <span className="badge">{totalQuantity}</span>
                   <p>&nbsp;My Cart</p>
                 </a>
               </li>
