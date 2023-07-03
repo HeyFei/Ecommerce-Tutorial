@@ -21,10 +21,10 @@ const nav__links = [
     display: "About US",
     path: "/about",
   },
-  {
-    display: "Gallery",
-    path: "/gallery",
-  },
+  // {
+  //   display: "Gallery",
+  //   path: "/gallery",
+  // },
   {
     display: "Contact US",
     path: "/contact",
@@ -92,7 +92,7 @@ const Header = () => {
                 <Li item={item} key={item.id} />
               ))}
               <li className="total">
-                <a href="./cart" className="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                <a href="../cart" className="btn btn-default hvr-hover btn-cart">VIEW CART</a>
                 <span className="float-right"><strong>Total</strong>: ${totalAmount}</span>
               </li>
             </ul>

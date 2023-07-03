@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { cartActions } from "../redux/cart/cartSlice";
 import products from "../assets/fake-data/products";
@@ -11,10 +11,8 @@ import bigImg03 from "../assets/images/big-img-03.jpg";
 const ProductDetail = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const [allProducts, setAllProducts] = useState(products);
     const product = products.find((product) => product.id === id);
-    const [previewImg, setPreviewImg] = useState(product.image01);
-    const { title, original_price, current_price, desc, category, image01 } = product;
+    const { title, original_price, current_price, desc, image01 } = product;
 
     const addToCart = () => {
         dispatch(
