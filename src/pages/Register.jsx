@@ -1,16 +1,16 @@
 import React from "react"
+import {Link} from "react-router-dom";
 
 const Register = () => {
     return (
-<section>
+        <section>
             <div className="all-title-box">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
-                            <h2>Checkout</h2>
                             <ul className="breadcrumb">
-                                <li className="breadcrumb-item"><a href="#">Shop</a></li>
-                                <li className="breadcrumb-item active">Checkout</li>
+                                <li className="breadcrumb-item active">Register</li>
+                                <li className="breadcrumb-item"><Link to='../Login'>Login</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -28,16 +28,20 @@ const Register = () => {
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
                                         <label htmlFor="InputName" className="mb-0">First Name</label>
-                                        <input type="text" className="form-control" id="InputName" placeholder="First Name" /> </div>
+                                        <input type="text" className="form-control" id="InputName"
+                                               placeholder="First Name"/></div>
                                     <div className="form-group col-md-6">
                                         <label htmlFor="InputLastname" className="mb-0">Last Name</label>
-                                        <input type="text" className="form-control" id="InputLastname" placeholder="Last Name" /> </div>
+                                        <input type="text" className="form-control" id="InputLastname"
+                                               placeholder="Last Name"/></div>
                                     <div className="form-group col-md-6">
                                         <label htmlFor="InputEmail1" className="mb-0">Email Address</label>
-                                        <input type="email" className="form-control" id="InputEmail1" placeholder="Enter Email" /> </div>
+                                        <input type="email" className="form-control" id="InputEmail1"
+                                               placeholder="Enter Email"/></div>
                                     <div className="form-group col-md-6">
                                         <label htmlFor="InputPassword1" className="mb-0">Password</label>
-                                        <input type="password" className="form-control" id="InputPassword1" placeholder="Password" /> </div>
+                                        <input type="password" className="form-control" id="InputPassword1"
+                                               placeholder="Password"/></div>
                                 </div>
                                 <button type="submit" className="btn hvr-hover">Register</button>
                             </form>

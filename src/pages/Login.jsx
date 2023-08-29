@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
-import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { yupResolver } from '@hookform/resolvers/yup';
+import {useEffect} from 'react';
+import {useForm} from "react-hook-form";
+import {Link, useNavigate} from 'react-router-dom'
+import {toast} from 'react-toastify'
+import {yupResolver} from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { useSelector, useDispatch } from 'react-redux';
-import { login } from '../redux/auth/authSlice';
+import {useSelector, useDispatch} from 'react-redux';
+import {login} from '../redux/auth/authSlice';
 
 const Login = () => {
     const authUser = useSelector((state) => state.auth.user);
@@ -27,16 +27,16 @@ const Login = () => {
         username: Yup.string().email().required('Username is required'),
         password: Yup.string().required('Password is required')
     });
-    const formOptions = { resolver: yupResolver(validationSchema) };
+    const formOptions = {resolver: yupResolver(validationSchema)};
 
     // get functions to build form with useForm() hook
-    const { register, handleSubmit, formState } = useForm(formOptions);
-    const { errors, isSubmitting } = formState;
+    const {register, handleSubmit, formState} = useForm(formOptions);
+    const {errors, isSubmitting} = formState;
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    function onSubmit({ username, password }) {
+    function onSubmit({username, password}) {
         const userData = {
             'email': username,
             'password': password
@@ -61,10 +61,9 @@ const Login = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
-                            <h2>Checkout</h2>
                             <ul className="breadcrumb">
-                                <li className="breadcrumb-item"><a href="#">Shop</a></li>
-                                <li className="breadcrumb-item active">Checkout</li>
+                                <li className="breadcrumb-item active">Login</li>
+                                <li className="breadcrumb-item"><Link to='../register'>Rigister</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -78,16 +77,23 @@ const Login = () => {
                                 <h3>Account Login</h3>
                             </div>
                             {/* <h5><a data-toggle="collapse" href="#formLogin" role="button" aria-expanded="false">Click here to Login</a></h5> */}
-                            <form onSubmit={handleSubmit(onSubmit)} className="mt-3 collapse review-form-box show" id="formLogin">
+                            <form onSubmit={handleSubmit(onSubmit)} className="mt-3 collapse review-form-box show"
+                                  id="formLogin">
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
                                         <label htmlFor="InputEmail" className="mb-0">Email Address</label>
-                                        <input defaultValue="imfee@126.com" name="username" type="text" {...register('username')} className={`form-control ${errors.username ? 'is-invalid' : ''}`} id="InputEmail" placeholder="Enter Email" />
+                                        <input defaultValue="imfee@126.com" name="username"
+                                               type="text" {...register('username')}
+                                               className={`form-control ${errors.username ? 'is-invalid' : ''}`}
+                                               id="InputEmail" placeholder="Enter Email"/>
                                         <div className="invalid-feedback">{errors.username?.message}</div>
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label htmlFor="InputPassword" className="mb-0">Password</label>
-                                        <input defaultValue="aaaaaa" name="passoword" type="password" {...register('password')} className={`form-control ${errors.password ? 'is-invalid' : ''}`} id="InputPassword" placeholder="Password" />
+                                        <input defaultValue="aaaaaa" name="passoword"
+                                               type="password" {...register('password')}
+                                               className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                                               id="InputPassword" placeholder="Password"/>
                                         <div className="invalid-feedback">{errors.password?.message}</div>
                                     </div>
                                 </div>
