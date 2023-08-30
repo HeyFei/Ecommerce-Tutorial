@@ -2002,6 +2002,7 @@
  .why-text.full-width h5 del{
      font-size: 13px;
      color: #666;
+     margin-right: 10px;
 }
  .why-text.full-width h5{
      color: #000000;
@@ -2489,6 +2490,7 @@
  .single-product-details h5 del {
      font-size: 13px;
      color: #666;
+     margin-right: 10px;
 }
  .available-stock span {
      font-size: 15px;

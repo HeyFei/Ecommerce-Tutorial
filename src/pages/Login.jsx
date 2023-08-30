@@ -11,9 +11,6 @@ const Login = () => {
     const authUser = useSelector((state) => state.auth.user);
     const isLoading = useSelector((state) => state.auth);
 
-
-    console.log(authUser);
-
     useEffect(() => {
         // redirect to home if already logged in
         if (authUser) navigate('/');
@@ -44,7 +41,6 @@ const Login = () => {
         dispatch(login(userData))
             .unwrap()
             .then((user) => {
-                console.log(user);
                 toast.success(`Logged in as ${user.username}`)
                 navigate('/')
             })

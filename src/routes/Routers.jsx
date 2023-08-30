@@ -11,7 +11,7 @@ import Login from "../pages/Login"
 import Logout from "../pages/Logout"
 import Register from "../pages/Register"
 import Account from '../pages/Account'
-import Favourites from '../pages/Favourites'
+import Favourites from '../pages/Favourite'
 
 const Routers = () => {
     return <Routes>

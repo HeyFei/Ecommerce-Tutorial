@@ -99,26 +99,6 @@ const ProductDetail = () => {
                                     </li>
                                 </ul>
 
-                                <div className="price-box-bar">
-                                    <div className="cart-and-bay-btn">
-                                        <button className="btn hvr-hover" style={{
-                                            color: "#FFFFFF",
-                                            fontWeight: 700,
-                                            padding: "10px 20px",
-                                            border: "none"
-                                        }}>Buy New
-                                        </button>
-                                        &nbsp;
-                                        <button onClick={() => addToCart()} className="btn hvr-hover" style={{
-                                            color: "#FFFFFF",
-                                            fontWeight: 700,
-                                            padding: "10px 20px",
-                                            border: "none"
-                                        }}>Add to Cart
-                                        </button>
-                                    </div>
-                                </div>
-
                                 <div className="add-to-btn">
                                     <div className="add-comp">
                                         <button className="btn hvr-hover" style={{
@@ -130,51 +110,14 @@ const ProductDetail = () => {
                                         }}><i className="fas fa-heart"></i> Add to wishlist
                                         </button>
                                         &nbsp;
-                                        <button className="btn hvr-hover" style={{
+                                        <button  onClick={() => addToCart()} className="btn hvr-hover" style={{
                                             color: "#FFFFFF",
                                             fontWeight: 700,
                                             padding: "10px 20px",
                                             marginBottom: "30px",
                                             border: "none"
-                                        }}><i className="fas fa-sync-alt"></i> Add to Compare
+                                        }}><i className="fas fa-cart-plus"></i> Add to Cart
                                         </button>
-                                    </div>
-                                    <div className="share-bar">
-                                        <button className="btn hvr-hover" style={{
-                                            color: "#FFFFFF",
-                                            padding: "5px 10px",
-                                            display: "inline-block",
-                                            width: "34px"
-                                        }}><i className="fab fa-facebook" aria-hidden="true"></i></button>
-                                        &nbsp;
-                                        <button className="btn hvr-hover" style={{
-                                            color: "#FFFFFF",
-                                            padding: "5px 10px",
-                                            display: "inline-block",
-                                            width: "34px"
-                                        }}><i className="fab fa-google-plus" aria-hidden="true"></i></button>
-                                        &nbsp;
-                                        <button className="btn hvr-hover" style={{
-                                            color: "#FFFFFF",
-                                            padding: "5px 10px",
-                                            display: "inline-block",
-                                            width: "34px"
-                                        }}><i className="fab fa-twitter" aria-hidden="true"></i></button>
-                                        &nbsp;
-                                        <button className="btn hvr-hover" style={{
-                                            color: "#FFFFFF",
-                                            padding: "5px 10px",
-                                            display: "inline-block",
-                                            width: "34px"
-                                        }}><i className="fab fa-pinterest-p" aria-hidden="true"></i></button>
-                                        &nbsp;
-                                        <button className="btn hvr-hover" style={{
-                                            color: "#FFFFFF",
-                                            padding: "5px 10px",
-                                            display: "inline-block",
-                                            width: "34px"
-                                        }}><i className="fab fa-whatsapp" aria-hidden="true"></i></button>
-                                        &nbsp;
                                     </div>
                                 </div>
                             </div>
