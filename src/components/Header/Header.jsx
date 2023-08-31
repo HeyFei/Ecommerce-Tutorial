@@ -48,7 +48,7 @@ const Header = () => {
                             <div className="login-box our-link">
                                 <ul>
                                     <li><Link to={user ? './account' : './login'}><i
-                                        className="fa fa-user s_color"></i> My Account</Link></li>
+                                        className="fa fa-user s_color"></i> {user ? 'My Account' : 'Login'}</Link></li>
                                 </ul>
                             </div>
                         </div>

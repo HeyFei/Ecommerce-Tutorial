@@ -12,21 +12,15 @@ const Login = () => {
     const isLoading = useSelector((state) => state.auth);
 
     useEffect(() => {
-        // redirect to home if already logged in
         if (authUser) navigate('/');
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-
-    // form validation rules 
     const validationSchema = Yup.object().shape({
         username: Yup.string().email().required('Username is required'),
         password: Yup.string().required('Password is required')
     });
     const formOptions = {resolver: yupResolver(validationSchema)};
 
-    // get functions to build form with useForm() hook
     const {register, handleSubmit, formState} = useForm(formOptions);
     const {errors, isSubmitting} = formState;
 
@@ -35,14 +29,18 @@ const Login = () => {
 
     function onSubmit({username, password}) {
         const userData = {
-            'email': username,
+            'username': username,
             'password': password
         }
         dispatch(login(userData))
             .unwrap()
-            .then((user) => {
-                toast.success(`Logged in as ${user.username}`)
-                navigate('/')
+            .then((data) => {
+                if (data.code != 0) {
+                    toast.error(data.msg);
+                } else {
+                    toast.success(`Logged in as ${data.data.user_info.nickname}`)
+                    navigate('/')
+                }
             })
             .catch(toast.error)
     }
@@ -78,18 +76,18 @@ const Login = () => {
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
                                         <label htmlFor="InputEmail" className="mb-0">Email Address</label>
-                                        <input defaultValue="imfee@126.com" name="username"
+                                        <input defaultValue="admin@react.com" name="username"
                                                type="text" {...register('username')}
                                                className={`form-control ${errors.username ? 'is-invalid' : ''}`}
-                                               id="InputEmail" placeholder="Enter Email"/>
+                                               id="InputEmail" placeholder="Enter Username"/>
                                         <div className="invalid-feedback">{errors.username?.message}</div>
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label htmlFor="InputPassword" className="mb-0">Password</label>
-                                        <input defaultValue="aaaaaa" name="passoword"
+                                        <input defaultValue="123456" name="passoword"
                                                type="password" {...register('password')}
                                                className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-                                               id="InputPassword" placeholder="Password"/>
+                                               id="InputPassword" placeholder="Enter Password"/>
                                         <div className="invalid-feedback">{errors.password?.message}</div>
                                     </div>
                                 </div>
