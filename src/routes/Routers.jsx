@@ -8,7 +8,6 @@ import Checkout from "../pages/Checkout"
 import Contact from "../pages/Contact"
 import About from "../pages/About"
 import Login from "../pages/Login"
-import Logout from "../pages/Logout"
 import Register from "../pages/Register"
 import Account from '../pages/Account'
 import Favourites from '../pages/Favourite'
@@ -25,7 +24,6 @@ const Routers = () => {
         <Route path='/contact' element={<Contact />} />
         <Route path='/about' element={<About />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/logout' element={<Logout />} />
         <Route path='/register' element={<Register />} />
         <Route path='/account' element={<Account />} />
     </Routes>

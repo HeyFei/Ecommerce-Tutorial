@@ -13,7 +13,7 @@ const Login = () => {
 
     useEffect(() => {
         if (authUser) navigate('/');
-    }, []);
+    }, [authUser]);
 
     const validationSchema = Yup.object().shape({
         username: Yup.string().email().required('Username is required'),

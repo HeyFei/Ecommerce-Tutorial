@@ -1,7 +1,21 @@
-import React from "react";
-import {NavLink, Link} from "react-router-dom";
+import React, {useEffect} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../redux/auth/authSlice";
 
 const Account = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const authUser = useSelector((state) => state.auth.user);
+
+    useEffect(() => {
+        if (!authUser) navigate('/login');
+    }, [authUser]);
+
+    const Logout = () => {
+        dispatch(logout())
+    }
+
     return (
         <section>
             <div className="all-title-box">
@@ -27,7 +41,7 @@ const Account = () => {
                                         </div>
                                         <div className="service-desc">
                                             <h4>Login &amp; security</h4>
-                                            <p>Edit login, name, and mobile number</p>
+                                            <p>&nbsp;</p>
                                         </div>
                                     </div>
                                 </div>
@@ -40,7 +54,7 @@ const Account = () => {
                                         </div>
                                         <div className="service-desc">
                                             <h4>Your Orders</h4>
-                                            <p>Track, return, or buy things again</p>
+                                            <p>&nbsp;</p>
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +67,7 @@ const Account = () => {
                                         </div>
                                         <div className="service-desc">
                                             <h4>Your Favourites</h4>
-                                            <p>Just buy it</p>
+                                            <p>&nbsp;</p>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +80,7 @@ const Account = () => {
                                         </div>
                                         <div className="service-desc">
                                             <h4>Your Addresses</h4>
-                                            <p>Edit addresses for orders and gifts</p>
+                                            <p>&nbsp;</p>
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +93,7 @@ const Account = () => {
                                         </div>
                                         <div className="service-desc">
                                             <h4>Payment options</h4>
-                                            <p>Edit or add payment methods</p>
+                                            <p>&nbsp;</p>
                                         </div>
                                     </div>
                                 </div>
@@ -88,11 +102,12 @@ const Account = () => {
                                 <div className="account-box">
                                     <div className="service-box">
                                         <div className="service-icon">
-                                            <Link to=''> <i className="fab fa-paypal"></i> </Link>
+                                            <Link to='' onClick={() => Logout()}> <i className="fa fa-sign-out-alt"></i>
+                                            </Link>
                                         </div>
                                         <div className="service-desc">
-                                            <h4>PayPal</h4>
-                                            <p>View benefits and payment settings</p>
+                                            <h4 onClick={() => Logout()}>Logout</h4>
+                                            <p>&nbsp;</p>
                                         </div>
                                     </div>
                                 </div>
