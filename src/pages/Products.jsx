@@ -1,21 +1,32 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import products from "../assets/fake-data/products";
 import {cartActions} from "../redux/cart/cartSlice";
 import Product from "../components/Product/Product";
+import {fetchData} from "../util/fetchData";
 
 const Products = () => {
-    const [allProducts, setAllProducts] = useState(products);
+    const [allProducts, setAllProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchProductsData = async () => {
+            const productPartsData = await fetchData(
+                "http://127.0.0.1/api/product/list"
+            );
+            setAllProducts(productPartsData.data.items);
+        };
+        fetchProductsData();
+
+    }, []);
 
     const dispatch = useDispatch();
     const addToCart = (item) => {
-        const {id, title, image01, current_price} = item;
+        const {id, title, image, current_price} = item;
         let price = current_price;
         dispatch(
             cartActions.addItem({
                 id,
                 title,
-                image01,
+                image,
                 price,
             })
         )
@@ -87,7 +98,7 @@ const Products = () => {
                                                                 <h5>
                                                                     <del>$ {item.original_price}</del>
                                                                     ${item.current_price}</h5>
-                                                                <p>{item.desc}</p>
+                                                                <p>{item.description}</p>
                                                                 <button onClick={() => addToCart(item)}
                                                                         className="btn hvr-hover" style={{
                                                                     bottom: "0px",

@@ -5,8 +5,8 @@ import favouriteSlice from './favourite/favouriteSlice';
 
 const store = configureStore({
     reducer: {
-        cart: cartSlice.reducer,
         auth: authSlice.reducer,
+        cart: cartSlice.reducer,
         favourite: favouriteSlice.reducer
     }
 });

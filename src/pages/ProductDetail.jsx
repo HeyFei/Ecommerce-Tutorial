@@ -2,19 +2,29 @@ import React, {useState, useEffect} from "react";
 import {useDispatch} from 'react-redux';
 import {useParams} from "react-router-dom";
 import {cartActions} from "../redux/cart/cartSlice";
-import products from "../assets/fake-data/products";
-
-import bigImg01 from "../assets/images/big-img-01.jpg";
-import bigImg02 from "../assets/images/big-img-02.jpg";
-import bigImg03 from "../assets/images/big-img-03.jpg";
+import {favouriteActions} from "../redux/favourite/favouriteSlice";
+import {fetchData} from "../util/fetchData";
 
 const ProductDetail = () => {
 
     const dispatch = useDispatch();
     const {id} = useParams();
-    const product = products.find((product) => product.id === id);
-    const {title, original_price, current_price, desc, image01} = product;
+
     const [quantity, setQuantity] = useState(1);
+    const [product, setProduct] = useState({});
+
+
+    useEffect(() => {
+        const fetchProductData = async () => {
+            const productPartData = await fetchData(
+                "http://127.0.0.1/api/product/view?id=" + id
+            );
+            setProduct(productPartData.data);
+        };
+        fetchProductData();
+
+    }, []);
+    const {title, original_price, current_price, description, image} = product;
 
     const onChangeQuantity = (e) => {
         setQuantity(e.target.value);
@@ -25,12 +35,23 @@ const ProductDetail = () => {
             cartActions.addItem({
                 id,
                 title,
-                image01,
+                image,
                 quantity,
                 price: current_price
             })
         );
     };
+
+    const addToWishList = () => {
+        dispatch(
+            favouriteActions.addItem({
+                id,
+                title,
+                image,
+                price: current_price
+            })
+        )
+    }
 
     return (
         <section>
@@ -50,34 +71,9 @@ const ProductDetail = () => {
                             <div id="carousel-example-1" className="single-product-slider carousel slide"
                                  data-ride="carousel">
                                 <div className="carousel-inner" role="listbox">
-                                    <div className="carousel-item active"><img className="d-block w-100" src={bigImg01}
+                                    <div className="carousel-item active"><img className="d-block w-100" src={image}
                                                                                alt="First slide"/></div>
-                                    <div className="carousel-item"><img className="d-block w-100" src={bigImg02}
-                                                                        alt="Second slide"/></div>
-                                    <div className="carousel-item"><img className="d-block w-100" src={bigImg03}
-                                                                        alt="Third slide"/></div>
                                 </div>
-                                <a className="carousel-control-prev" href="#carousel-example-1" role="button"
-                                   data-slide="prev">
-                                    <i className="fa fa-angle-left" aria-hidden="true"></i>
-                                    <span className="sr-only">Previous</span>
-                                </a>
-                                <a className="carousel-control-next" href="#carousel-example-1" role="button"
-                                   data-slide="next">
-                                    <i className="fa fa-angle-right" aria-hidden="true"></i>
-                                    <span className="sr-only">Next</span>
-                                </a>
-                                <ol className="carousel-indicators">
-                                    <li data-target="#carousel-example-1" data-slide-to="0" className="active">
-                                        <img className="d-block w-100 img-fluid" src={bigImg01} alt=""/>
-                                    </li>
-                                    <li data-target="#carousel-example-1" data-slide-to="1">
-                                        <img className="d-block w-100 img-fluid" src={bigImg02} alt=""/>
-                                    </li>
-                                    <li data-target="#carousel-example-1" data-slide-to="2">
-                                        <img className="d-block w-100 img-fluid" src={bigImg03} alt=""/>
-                                    </li>
-                                </ol>
                             </div>
                         </div>
                         <div className="col-xl-7 col-lg-7 col-md-6">
@@ -86,9 +82,9 @@ const ProductDetail = () => {
                                 <h5>
                                     <del>$ {original_price}</del>
                                     ${current_price}</h5>
-                                {/* <p className="available-stock"><span> More than 20 available / <a href="#">8 sold </a></span><p> */}
+                                <p className="available-stock"><span>&nbsp;</span></p>
                                 <h4>Short Description:</h4>
-                                <p>{desc}</p>
+                                <p>{description}</p>
                                 <ul>
                                     <li>
                                         <div className="form-group quantity-box">
@@ -101,7 +97,7 @@ const ProductDetail = () => {
 
                                 <div className="add-to-btn">
                                     <div className="add-comp">
-                                        <button className="btn hvr-hover" style={{
+                                        <button onClick={() => addToWishList()} className="btn hvr-hover" style={{
                                             color: "#FFFFFF",
                                             fontWeight: 700,
                                             padding: "10px 20px",
@@ -110,7 +106,7 @@ const ProductDetail = () => {
                                         }}><i className="fas fa-heart"></i> Add to wishlist
                                         </button>
                                         &nbsp;
-                                        <button  onClick={() => addToCart()} className="btn hvr-hover" style={{
+                                        <button onClick={() => addToCart()} className="btn hvr-hover" style={{
                                             color: "#FFFFFF",
                                             fontWeight: 700,
                                             padding: "10px 20px",

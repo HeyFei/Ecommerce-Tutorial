@@ -1,30 +1,20 @@
 import React, {useState, useEffect} from "react";
-import products from "../assets/fake-data/products";
+import {fetchData} from "../util/fetchData";
 import Product from "../components/Product/Product";
 
 const Home = () => {
-
-    const [category, setCategory] = useState("All");
-    const [allProducts, setAllProducts] = useState(products);
-
+    const [allProducts, setAllProducts] = useState([]);
 
     useEffect(() => {
-        if (category == "All") {
-            setAllProducts(products);
-        }
-        if (category == "Top featured") {
-            const filterProducts = products.filter(
-                (item) => item.category == "Top featured"
+        const fetchProductsData = async () => {
+            const productPartsData = await fetchData(
+                "http://127.0.0.1/api/product/list"
             );
-            setAllProducts(filterProducts);
-        }
-        if (category == "Best seller") {
-            const filterProducts = products.filter(
-                (item) => item.category == "Best seller"
-            );
-            setAllProducts(filterProducts);
-        }
-    }, [category]);
+            setAllProducts(productPartsData.data.items);
+        };
+        fetchProductsData();
+
+    }, []);
 
     return (
         <section>
@@ -45,28 +35,6 @@ const Home = () => {
                             <div className="title-all text-center">
                                 <h1>Fruits & Vegetables</h1>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="special-menu text-center">
-                                <div className="button-group filter-button-group">
-                                    <button
-                                        className={category === 'All' ? 'active' : ''}
-                                        onClick={() => setCategory("All")}>All
-                                    </button>
-                                    &nbsp;
-                                    <button
-                                        className={category === 'Top featured' ? 'active' : ''}
-                                        onClick={() => setCategory("Top featured")}>Top featured
-                                    </button>
-                                    &nbsp;
-                                    <button
-                                        className={category === 'Best seller' ? 'active' : ''}
-                                        onClick={() => setCategory("Best seller")}>Best seller
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     </div>

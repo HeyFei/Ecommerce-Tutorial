@@ -90,37 +90,9 @@ const Header = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="side">
-
-                        <a href="#" className="close-side"><i className="fa fa-times"></i></a>
-                        <li className="cart-box">
-                            <ul className="cart-list">
-                                {cartItems.map((item) => (
-                                    <Li item={item} key={item.id}/>
-                                ))}
-                                <li className="total">
-                                    <Link to='../cart' className="btn btn-default hvr-hover btn-cart">VIEW CART</Link>
-                                    <span className="float-right"><strong>Total</strong>: ${totalAmount}</span>
-                                </li>
-                            </ul>
-                        </li>
-                    </div>
                 </nav>
             </header>
         </section>
-    );
-};
-
-const Li = (props) => {
-    const {id, image01, title, price, quantity} = props.item;
-    const dispatch = useDispatch();
-
-    return (
-        <li>
-            <a href="#" className="photo"><img src={image01} className="cart-thumb" alt=""/></a>
-            <h6><a href="#">{title}</a></h6>
-            <p>{quantity}x - <span className="price">${price}</span></p>
-        </li>
     );
 };
 

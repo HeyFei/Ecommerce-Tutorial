@@ -9,40 +9,42 @@ const Product = (props) => {
     const dispatch = useDispatch();
 
     const addToCart = (item) => {
-        const {id, title, image01, current_price} = item;
+        const {id, title, image, current_price} = item;
         let price = current_price;
         dispatch(
             cartActions.addItem({
                 id,
                 title,
-                image01,
+                image,
                 price
             })
         )
     }
 
     const addToWishList = (item) => {
-        const {id, title, image01, current_price} = item;
+        const {id, title, image, current_price} = item;
         let price = current_price;
         dispatch(
             favouriteActions.addItem({
                 id,
                 title,
-                image01,
+                image,
                 price
             })
         )
     }
 
-    const {id, title, current_price, tag, image01} = props.item;
+    const {id, title, current_price, tag, image} = props.item;
     return (
-        <div className={props.uri == "products" ? 'col-sm-6 col-md-6 col-lg-4 col-xl-4' : 'col-lg-3 col-md-6 special-grid best-seller'} key={id}>
+        <div
+            className={props.uri == "products" ? 'col-sm-6 col-md-6 col-lg-4 col-xl-4' : 'col-lg-3 col-md-6 special-grid best-seller'}
+            key={id}>
             <div className="products-single fix">
                 <div className="box-img-hover">
                     <div className="type-lb">
                         <p className={tag}>{tag}</p>
                     </div>
-                    <img src={image01} className="img-fluid" alt="Image"/>
+                    <img src={image} className="img-fluid" alt="Image"/>
                     <div className="mask-icon">
                         <ul>
                             <li><Link to={`/product/${id}`}><i

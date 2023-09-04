@@ -29,7 +29,7 @@ const favouriteSlice = createSlice({
                 state.favouriteItems.push({
                     id: newItem.id,
                     title: newItem.title,
-                    image01: newItem.image01,
+                    image: newItem.image,
                     price: newItem.price
 
                 })

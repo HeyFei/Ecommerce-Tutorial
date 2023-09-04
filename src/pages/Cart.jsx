@@ -110,16 +110,16 @@ const Cart = () => {
 
 
 const Tr = (props) => {
-    const {id, image01, title, price, quantity} = props.item;
+    const {id, image, title, price, quantity} = props.item;
     const dispatch = useDispatch();
 
     const incrementItem = () => {
         dispatch(
             cartActions.addItem({
-                id: id,
-                title: title,
-                image01: image01,
-                price: price,
+                id,
+                title,
+                image,
+                price,
             })
         );
     };
@@ -135,7 +135,7 @@ const Tr = (props) => {
         <tr>
             <td className="thumbnail-img">
                 <Link to={`/product/${id}`}>
-                    <img className="img-fluid" src={image01} alt=""/>
+                    <img className="img-fluid" src={image} alt=""/>
                 </Link>
             </td>
             <td className="name-pr">

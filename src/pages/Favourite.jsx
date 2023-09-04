@@ -1,9 +1,5 @@
 import React from "react";
-import {NavLink, Link} from "react-router-dom";
-
-import Img01 from "../assets/images/img-pro-01.jpg";
-import Img02 from "../assets/images/img-pro-02.jpg";
-import Img03 from "../assets/images/img-pro-03.jpg";
+import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {favouriteActions} from "../redux/favourite/favouriteSlice";
 import {cartActions} from "../redux/cart/cartSlice";
@@ -57,16 +53,16 @@ const Favourite = () => {
 };
 
 const Tr = (props) => {
-    const {id, image01, title, price} = props.item;
+    const {id, image, title, price} = props.item;
     const dispatch = useDispatch();
 
     const addToCart = (item) => {
-        const {id, title, image01, price} = item;
+        const {id, title, image, price} = item;
         dispatch(
             cartActions.addItem({
                 id,
                 title,
-                image01,
+                image,
                 price
             })
         )
@@ -80,7 +76,7 @@ const Tr = (props) => {
         <tr>
             <td className="thumbnail-img">
                 <Link to={`/product/${id}`}>
-                    <img className="img-fluid" src={image01} alt=""/>
+                    <img className="img-fluid" src={image} alt=""/>
                 </Link>
             </td>
             <td className="name-pr">
