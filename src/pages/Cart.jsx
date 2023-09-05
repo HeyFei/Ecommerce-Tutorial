@@ -153,7 +153,7 @@ const Tr = (props) => {
                 <span onClick={() => incrementItem()} style={{cursor: "pointer"}}>&nbsp;+&nbsp;</span>
             </td>
             <td className="total-pr">
-                <p>$ {Number(quantity) * Number(price)}</p>
+                <p>$ {(Number(quantity) * Number(price)).toFixed(2)}</p>
             </td>
             <td className="remove-pr">
                 <button onClick={() => deleteItem()}
